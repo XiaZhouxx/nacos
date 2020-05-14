@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: nacos
+  cloud:
+    nacos:
+      config:
+        server-addr: 127.0.0.1:8848
+        namespace: f4fcc484-1316-47a1-abcb-3332daf5c952
+        ext-config[0]:
+          data-id: application.yaml
+          refresh: true
+
