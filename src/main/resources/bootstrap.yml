@@ -1,12 +1,15 @@
 spring:
   application:
-    name: nacos
+    name: nacos-test
   cloud:
     nacos:
       config:
-        server-addr: 127.0.0.1:8848
-        namespace: f4fcc484-1316-47a1-abcb-3332daf5c952
-        ext-config[0]:
-          data-id: application.yaml
+        server-addr: 192.168.199.149:8848
+        extension-configs:
+          data-id: applicatiom.yaml
           refresh: true
-
+      discovery:
+        server-addr: 192.168.199.149:8848
+        ephemeral: false
+  main:
+    allow-bean-definition-overriding: true
