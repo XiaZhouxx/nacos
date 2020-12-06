@@ -6,16 +6,14 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 /**
  * @author xz
- * @ClassName NacosApplication
+ * @ClassName NacosProviderApplication
  * @Description
- * @date 2020/5/1
- * 1 0011 22:59
+ * @date 2020/12/5 19:24
  **/
 @SpringBootApplication
 @EnableDiscoveryClient
-public class NacosApplication {
-
+public class NacosProviderApplication {
     public static void main(String[] args) {
-        SpringApplication.run(NacosApplication.class, args);
+        SpringApplication.run(NacosProviderApplication.class, args);
     }
 }

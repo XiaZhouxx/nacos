@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: nacos-provider
+  cloud:
+    nacos:
+      config:
+        server-addr: 47.107.246.54:8848
+        extension-configs:
+          - data-id: application.yaml
+            refresh: true
+      discovery:
+        server-addr: 47.107.246.54:8848
+        ephemeral: false
+  main:
+    allow-bean-definition-overriding: true
