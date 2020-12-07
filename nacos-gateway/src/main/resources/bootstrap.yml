@@ -47,7 +47,7 @@ spring:
             ## 添加请求参数
             - AddRequestParameter=name,xz
             ## 熔断
-            ## 限流
+            ## 限流 目前测试限流后 抛出HTTP 429错误, 根据情况优化
             - name: RequestRateLimiter
               args:
                 keyResolver: "#{@hostKeyResolver}" # 缓存key 自定义生成策略
@@ -59,6 +59,7 @@ spring:
   redis:
     port: 6379
     host: localhost
+    password: 123456
 server:
   port: 8989
 management: ## 暴露监控端点
