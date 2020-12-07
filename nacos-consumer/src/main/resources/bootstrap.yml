@@ -10,6 +10,8 @@ spring:
             refresh: true
       discovery:
         server-addr: 47.107.246.54:8848
-        ephemeral: false
+        ephemeral: true
   main:
     allow-bean-definition-overriding: true
+server:
+  port: 8111

@@ -1,6 +1,7 @@
 package com.xz.nacos.limiter;
 
 import org.springframework.cloud.gateway.filter.ratelimit.KeyResolver;
+import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
@@ -10,6 +11,7 @@ import reactor.core.publisher.Mono;
  * @Description
  * @date 2020/12/5 22:51
  **/
+@Component("hostKeyResolver")
 public class HostKeyResolver implements KeyResolver {
     @Override
     public Mono<String> resolve(ServerWebExchange exchange) {
