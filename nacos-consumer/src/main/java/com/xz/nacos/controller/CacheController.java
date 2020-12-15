@@ -24,7 +24,7 @@ public class CacheController {
      */
     @RequestMapping("/cache")
     public String cacheAble(String name) {
-        cacheService.testCacheable(name);
+        cacheService.simpleCacheable(name);
         return name;
     }
 

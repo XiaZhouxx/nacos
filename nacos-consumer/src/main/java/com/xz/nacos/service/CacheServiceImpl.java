@@ -24,7 +24,7 @@ public class CacheServiceImpl {
      * @date 2020/12/15
      */
     @Cacheable(key = "'xz' + #key", condition = "#key != 'zs'", unless = "#result == ''")
-    public String testCacheable(String key) {
+    public String simpleCacheable(String key) {
         System.out.println("Cacheable 方法");
         return key;
     }

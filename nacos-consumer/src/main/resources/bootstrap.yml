@@ -13,5 +13,9 @@ spring:
         ephemeral: true # 配置实例是否临时 AP/CP 在最早Nacos版本是被写死在NacosServiceRegistry中只能修改源码
   main:
     allow-bean-definition-overriding: true
+  redis:
+    host: 47.107.246.54
+    port: 6381
+    password: 118756
 server:
   port: 8111
