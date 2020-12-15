@@ -58,6 +58,7 @@ public class LogAspect {
                     String a = JSONObject.toJSONString(arg);
                     requestArgs.append(a).append(",");
                 }
+                requestArgs.substring(0, requestArgs.length() - 1);
             }
             requestArgs.append("}");
         }
