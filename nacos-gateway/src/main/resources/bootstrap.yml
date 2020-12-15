@@ -47,6 +47,7 @@ spring:
             ## 添加请求参数
             - AddRequestParameter=name,xz
             ## 熔断
+            - name: Hystrix
             ## 限流 目前测试限流后 抛出HTTP 429错误, 根据情况优化
             - name: RequestRateLimiter
               args:
