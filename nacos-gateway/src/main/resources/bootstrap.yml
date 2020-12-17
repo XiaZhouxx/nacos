@@ -51,7 +51,7 @@ spring:
             ## 限流 目前测试限流后 抛出HTTP 429错误, 根据情况优化
             - name: RequestRateLimiter
               args:
-                keyResolver: "#{@hostKeyResolver}" # 缓存key 自定义生成策略
+                keyResolver: "#{@hostKeyResolver}" # 缓存key 自定义生成策略类 SpEl表达式
                 redis-rate-limiter.replenishRate: 1 # 每秒生成令牌数 最小 1 也就是一秒内最少也能接受一个请求。
                 redis-rate-limiter.burstCapacity: 1 # 令牌桶容量 最小 0 结合生成令牌的速率 也就是令牌桶最多1秒能接受 3 个请求
                 redis-rate-limiter.requestedTokens: 1 # 一次请求所占用令牌数

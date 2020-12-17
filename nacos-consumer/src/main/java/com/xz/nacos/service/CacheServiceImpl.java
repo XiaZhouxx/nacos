@@ -29,7 +29,7 @@ public class CacheServiceImpl {
         return key;
     }
 
-    @Cacheable(key = "#user.username")
+    @Cacheable(key = "T(com.alibaba.fastjson.JSONObject).toJSONString(#user)")
     public User objectCacheAble(User user) {
         System.out.println("Object Cache");
         return user;
