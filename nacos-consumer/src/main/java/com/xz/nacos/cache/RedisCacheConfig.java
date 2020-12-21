@@ -41,7 +41,9 @@ public class RedisCacheConfig extends CachingConfigurerSupport {
                         RedisSerializationContext
                                 .SerializationPair
                                 .fromSerializer(RedisSerializer.json())
-                ).prefixCacheNameWith(cachePrefix)
+                )
+                // .prefixCacheNameWith(cachePrefix)
+                .computePrefixWith(cacheName -> cachePrefix + cacheName) // 构建前缀的方式，不加 cacheName则缓存全在一个prefix中
                 .entryTtl(Duration.ofMillis(cacheTtl))
                 .disableCachingNullValues();
         return new RedisCacheManager(writer, configuration);
