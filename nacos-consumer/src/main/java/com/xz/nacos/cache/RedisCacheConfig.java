@@ -46,7 +46,10 @@ public class RedisCacheConfig extends CachingConfigurerSupport {
                 .computePrefixWith(cacheName -> cachePrefix + cacheName) // 构建前缀的方式，不加 cacheName则缓存全在一个prefix中
                 .entryTtl(Duration.ofMillis(cacheTtl))
                 .disableCachingNullValues();
-        return new RedisCacheManager(writer, configuration);
+        RedisCacheManager manager = new RedisCacheManager(writer, configuration);
+
+
+        return manager;
     }
 
     @Override

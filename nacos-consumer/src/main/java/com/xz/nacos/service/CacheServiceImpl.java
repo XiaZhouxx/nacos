@@ -37,7 +37,8 @@ public class CacheServiceImpl {
 
     /**
      * 清除缓存
-     * 可以指定 cacheName 删除整个cache(默认 false 只删除关联的key, 需要指定allEntries)
+     * 单独指定 cacheName 默认生成一个SimpleKey[]
+     * (需要指定allEntries 删除整个cacheName下的key 默认 false 只删除关联的key)
      * 同时指定 cacheKey 只删除单个Key
      * @author xz
      * @date 2020/12/15
