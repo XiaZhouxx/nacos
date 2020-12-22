@@ -43,7 +43,8 @@ public class RedisCacheConfig extends CachingConfigurerSupport {
                                 .fromSerializer(RedisSerializer.json())
                 )
                 // .prefixCacheNameWith(cachePrefix)
-                .computePrefixWith(cacheName -> cachePrefix + cacheName) // 构建前缀的方式，不加 cacheName则缓存全在一个prefix中
+                // 自定义构建前缀的方式，不加cacheName 默认则缓存全在一个prefix中 删除某个cacheName会导致全删
+                .computePrefixWith(cacheName -> cachePrefix + cacheName)
                 .entryTtl(Duration.ofMillis(cacheTtl))
                 .disableCachingNullValues();
         RedisCacheManager manager = new RedisCacheManager(writer, configuration);
