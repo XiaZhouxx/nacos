@@ -47,7 +47,7 @@ public class RedisCacheConfig extends CachingConfigurerSupport {
                 .computePrefixWith(cacheName -> cachePrefix + cacheName)
                 .entryTtl(Duration.ofMillis(cacheTtl))
                 .disableCachingNullValues();
-        RedisCacheManager manager = new RedisCacheManager(writer, configuration);
+        RedisCacheManager manager = new CustomRedisCacheManager(writer, configuration);
 
 
         return manager;

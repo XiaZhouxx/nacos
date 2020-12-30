@@ -43,7 +43,7 @@ public class CacheServiceImpl {
      * @author xz
      * @date 2020/12/15
      */
-    @CacheEvict(cacheNames = "test")
+    @CacheEvict(cacheNames = "test", allEntries = true)
     public void edit() {
         System.out.println("CacheEvict");
     }
