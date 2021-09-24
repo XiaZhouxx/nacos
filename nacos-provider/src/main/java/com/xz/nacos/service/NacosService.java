@@ -1,6 +1,7 @@
 package com.xz.nacos.service;
 
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
+import com.alibaba.csp.sentinel.annotation.aspectj.SentinelResourceAspect;
 import com.alibaba.csp.sentinel.slots.block.BlockException;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +13,11 @@ import org.springframework.stereotype.Service;
  **/
 @Service
 public class NacosService {
+    /**
+     * 注解的实现, 粒度是基于任意的方法的, 更为灵活, 推荐使用这种
+     * 底层基于SpringAOP {@link SentinelResourceAspect}
+     * @return
+     */
     @SentinelResource(value = "test",blockHandler = "block", blockHandlerClass = BlockHandler.class)
     public String service() {
         System.out.println("service ....");

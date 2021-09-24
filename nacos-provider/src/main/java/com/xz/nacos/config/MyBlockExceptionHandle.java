@@ -1,5 +1,6 @@
 package com.xz.nacos.config;
 
+import com.alibaba.csp.sentinel.adapter.spring.webmvc.AbstractSentinelInterceptor;
 import com.alibaba.csp.sentinel.adapter.spring.webmvc.callback.BlockExceptionHandler;
 import com.alibaba.csp.sentinel.slots.block.BlockException;
 import com.alibaba.csp.sentinel.util.StringUtil;
@@ -17,6 +18,10 @@ import java.io.PrintWriter;
  **/
 @Component
 public class MyBlockExceptionHandle implements BlockExceptionHandler {
+    /**
+     * 该配置是针对于SpringMVC体系的BlockException处理. Sentinel会默认生成对于MVC接口的处理
+     * {@link AbstractSentinelInterceptor}
+     */
     @Override
     public void handle(HttpServletRequest request, HttpServletResponse response, BlockException e) throws Exception {
         response.setStatus(429);
