@@ -3,6 +3,7 @@ package com.xz.nacos.controller;
 import com.xz.nacos.domain.User;
 import com.xz.nacos.service.CacheServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -50,6 +51,7 @@ public class CacheController {
      * @date 2020/12/15
      */
     @RequestMapping("/caching")
+    @Transactional
     public String multipleCache(String name) {
         cacheService.selectMultipleCache(name);
         return name;

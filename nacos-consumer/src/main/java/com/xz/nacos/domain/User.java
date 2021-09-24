@@ -1,14 +1,12 @@
 package com.xz.nacos.domain;
 
-import java.io.Serializable;
-
 /**
  * @author xz
  * @ClassName aop测试
  * @Description
  * @date 2020/11/17 0017 21:32
  **/
-public class User implements Serializable {
+public class User {
     private String username;
 
     private Integer age;
