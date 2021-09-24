@@ -6,7 +6,6 @@ import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.CachingConfigurerSupport;
 import org.springframework.cache.interceptor.CacheErrorHandler;
 import org.springframework.data.redis.cache.RedisCacheConfiguration;
-import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.cache.RedisCacheWriter;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.serializer.RedisSerializationContext;
@@ -28,13 +27,13 @@ public class RedisCacheConfig extends CachingConfigurerSupport {
     RedisConnectionFactory redisConnectionFactory;
     @Value("${order.redis.cachePrefix:saas:cache:}")
     private String cachePrefix;
-    @Value("${order.redis.cacheTtl:60000}")
+    @Value("${order.redis.cacheTtl:6000000}")
     private long cacheTtl;
 
     @Override
     public CacheManager cacheManager() {
         RedisCacheWriter writer = RedisCacheWriter.nonLockingRedisCacheWriter(redisConnectionFactory);
-        // 配置项
+        // 配置项Candidate
         RedisCacheConfiguration configuration = RedisCacheConfiguration
                 .defaultCacheConfig()
                 .serializeValuesWith(
@@ -46,7 +45,7 @@ public class RedisCacheConfig extends CachingConfigurerSupport {
                 .computePrefixWith(cacheName -> cachePrefix + cacheName) // 构建前缀的方式，不加 cacheName则缓存全在一个prefix中
                 .entryTtl(Duration.ofMillis(cacheTtl))
                 .disableCachingNullValues();
-        return new RedisCacheManager(writer, configuration);
+        return new SaaSCacheManager(writer, configuration);
     }
 
     @Override

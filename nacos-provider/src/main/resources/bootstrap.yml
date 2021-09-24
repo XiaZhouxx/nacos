@@ -11,6 +11,9 @@ spring:
       discovery:
         server-addr: 47.107.246.54:8848
         ephemeral: false
+    sentinel:
+      transport:
+        dashboard: 127.0.0.1:8080
   main:
     allow-bean-definition-overriding: true
 server:

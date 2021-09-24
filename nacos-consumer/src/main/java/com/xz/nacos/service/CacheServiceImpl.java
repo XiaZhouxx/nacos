@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
  * @date 2020/12/15 16:44
  **/
 @Service
-@CacheConfig(cacheNames = "test")
+@CacheConfig(cacheNames = {"test","xz"})
 public class CacheServiceImpl {
     /**
      * Method缓存 必须指定CacheName, 可以使用@CacheConfig 针对类级别处理
@@ -42,7 +42,7 @@ public class CacheServiceImpl {
      * @author xz
      * @date 2020/12/15
      */
-    @CacheEvict(cacheNames = "test")
+    @CacheEvict(cacheNames = "test", allEntries = true)
     public void edit() {
         System.out.println("CacheEvict");
     }
