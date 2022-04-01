@@ -14,15 +14,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping
 public class NacosController {
-    @Autowired
-    NacosService nacosService;
-    @RequestMapping("/say")
-    public String say() {
-        return nacosService.service();
-    }
+//    @Autowired
+//    NacosService nacosService;
+//    @RequestMapping("/say")
+//    public String say() {
+//        return nacosService.service();
+//    }
+//
+//    @RequestMapping("/test")
+//    public String test() {
+//        return nacosService.service1();
+//    }
 
-    @RequestMapping("/test")
-    public String test() {
-        return nacosService.service1();
-    }
+
 }

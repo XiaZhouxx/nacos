@@ -1,18 +1,18 @@
 spring:
   application:
-    name: nacos-provider
+    name: nacos-address
   cloud:
     nacos:
       config:
         server-addr: localhost:8848
         file-extension: yml
+        enabled: false
       discovery:
         server-addr: localhost:8848
         ephemeral: true
+        enabled: false
     sentinel:
       transport:
         dashboard: 127.0.0.1:8082
   main:
     allow-bean-definition-overriding: true
-server:
-  port: 8989
