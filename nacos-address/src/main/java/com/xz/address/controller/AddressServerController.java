@@ -16,6 +16,7 @@ public class AddressServerController {
     @RequestMapping("/nacos/serverlist")
     public RestResult<String> serverList() {
         log.info("receive get nacos server list request");
-        return new RestResult<>(200, "127.0.0.1:8848");
+        // 集群节点地址 逗号','分隔多个即可
+        return new RestResult<>(200, "127.0.0.1:8848,127.0.0.1:8849");
     }
 }
