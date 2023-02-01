@@ -127,6 +127,14 @@ public class CompletableFutureController {
                             println("combine end");
                         }
                 );
+        // 组合多个不同返回值的CompletableFuture, 全部执行完后最后执行thenApply, 然后去取这些任务的返回值即可。
+        CompletableFuture<String> compositeResult = CompletableFuture.allOf(task1, task2, task3).thenApply(v -> {
+            String s = task2.join();
+
+            return "compositeResult";
+        });
+
+        System.out.println(compositeResult.get());
 //
 //        CompletableFuture<String> task3 = task1.thenCombine(task2, (a, res) -> {
 //            println("task 3 running");
