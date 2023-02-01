@@ -1,6 +1,7 @@
 package com.xz.nacos.controller;
 
 import com.alibaba.cloud.nacos.refresh.NacosRefreshHistory;
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import org.springframework.cloud.endpoint.event.RefreshEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.EventListener;
@@ -18,6 +19,7 @@ public class NacosConfigController implements ApplicationListener<RefreshEvent> 
     @Resource
     NacosRefreshHistory history;
 
+    @SentinelResource
     @RequestMapping("/history")
     public Object getConfigHistory() {
         return history.getRecords();

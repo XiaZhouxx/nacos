@@ -4,14 +4,14 @@ spring:
   cloud:
     nacos:
       config:
-        server-addr: localhost:8848
+        server-addr: 47.108.182.31:8848
         file-extension: yml
       discovery:
-        server-addr: localhost:8848
+        server-addr: 47.108.182.31:8848
         ephemeral: true
     sentinel:
       transport:
-        dashboard: 127.0.0.1:8082
+        dashboard: 47.108.182.31:8888
   main:
     allow-bean-definition-overriding: true
 server:

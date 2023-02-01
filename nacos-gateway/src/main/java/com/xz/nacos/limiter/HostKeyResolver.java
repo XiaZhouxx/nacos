@@ -18,5 +18,4 @@ public class HostKeyResolver implements KeyResolver {
         // 根据业务规则生成限流Key, 例如IP, 业务唯一ID, URL等。
         return Mono.just(exchange.getRequest().getRemoteAddress().getHostName());
     }
-
 }
