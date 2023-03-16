@@ -1,5 +1,8 @@
 package com.xz.nacos.service;
 
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
+import com.alibaba.csp.sentinel.annotation.aspectj.SentinelResourceAspect;
+import com.alibaba.csp.sentinel.slots.block.BlockException;
 import org.springframework.stereotype.Service;
 
 /**
@@ -13,22 +16,29 @@ public class NacosService {
     /**
      * 注解的实现, 粒度是基于任意的方法的, 更为灵活, 推荐使用这种
      * 底层基于SpringAOP {@link SentinelResourceAspect}
+     */
+
+
+    /**
+     * sentinel针对blockException(Sentinel内部slot 熔断、流控、黑白名单)的异常处理
      * @return
      */
-//    @SentinelResource(value = "test",blockHandler = "block", blockHandlerClass = BlockHandler.class)
-//    public String service() {
-//        System.out.println("service ....");
-//        return "hello world";
-//    }
-//
-//    @SentinelResource(value = "xz", blockHandler = "block1", fallback = "callBack", fallbackClass = FallBackHandler.class)
-//    public String service1() {
-//        throw new RuntimeException();
-//        //return "test";
-//    }
-//
-//    public String block1(BlockException e) {
-//        e.printStackTrace();
-//        return "block1";
-//    }
+    @SentinelResource(blockHandler = "block", blockHandlerClass = BlockHandler.class)
+    public String service() {
+        return "service success";
+    }
+
+    /**
+     * 非blockException的异常处理
+     * @return
+     */
+    @SentinelResource(fallback = "callBack", fallbackClass = FallBackHandler.class)
+    public String service1() {
+        throw new RuntimeException();
+    }
+
+    public String block1(BlockException e) {
+        e.printStackTrace();
+        return "block1";
+    }
 }

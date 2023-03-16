@@ -1,12 +1,15 @@
 package com.xz.nacos.controller;
 
 import com.xz.nacos.domain.User;
+import com.xz.nacos.feign.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+
+import javax.annotation.Resource;
 
 /**
  * @author xz
@@ -36,5 +39,12 @@ public class NacosController {
     @RequestMapping("/exception")
     public void testExceptionAOPLog() throws Exception {
         throw new Exception("服务器异常");
+    }
+    @Resource
+    UserService userService;
+
+    @RequestMapping("/register")
+    public void registerUser() {
+        userService.registerUser();
     }
 }

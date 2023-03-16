@@ -6,7 +6,7 @@ package com.xz.nacos.domain;
  * @Description
  * @date 2020/11/17 0017 21:32
  **/
-public class User {
+public class User implements UserInterface {
     private String username;
 
     private Integer age;
@@ -35,5 +35,10 @@ public class User {
 
     public void setPosition(String position) {
         this.position = position;
+    }
+
+    @Override
+    public String songSing() {
+        return "fat boy";
     }
 }

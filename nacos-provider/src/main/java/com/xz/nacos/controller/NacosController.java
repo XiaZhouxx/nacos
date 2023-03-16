@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.concurrent.*;
+
 /**
  * @author xz
  * @ClassName NacosController
@@ -25,6 +27,13 @@ public class NacosController {
 //    public String test() {
 //        return nacosService.service1();
 //    }
+
+    public static void main(String[] args) {
+        ThreadPoolExecutor exec = new ThreadPoolExecutor(2, 2, 0, TimeUnit.MILLISECONDS,
+                new ArrayBlockingQueue<>(1024), r -> new Thread(r, "test-"), new ThreadPoolExecutor.DiscardPolicy());
+
+        exec.prestartAllCoreThreads();
+    }
 
 
 }
