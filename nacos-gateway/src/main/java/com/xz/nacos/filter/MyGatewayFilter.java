@@ -6,8 +6,9 @@ import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
 /**
+ *  * Gateway中局部过滤器，装载进Spring容器中也不会生效，不单独使用，一般配合FilterFactory处理。
+ *
  * @author xz
- * @Description Gateway中局部过滤器，装载进Spring容器中也不会生效，不单独使用，一般配合FilterFactory处理。
  * @date 2020/12/7 9:59
  **/
 public class MyGatewayFilter implements GatewayFilter {

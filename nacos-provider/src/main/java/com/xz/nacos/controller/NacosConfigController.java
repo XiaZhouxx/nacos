@@ -19,6 +19,7 @@ public class NacosConfigController {
     @Resource
     NacosRefreshHistory history;
 
+    @SentinelResource
     @RequestMapping("/history")
     @SentinelResource
     public Object getConfigHistory() {

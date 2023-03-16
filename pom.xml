@@ -107,7 +107,7 @@
         <profile>
             <id>test</id>
             <properties>
-                <nacos.host>47.107.246.54</nacos.host>
+                <nacos.host>47.108.182.31</nacos.host>
                 <nacos.namespace>a6289093-df36-4794-b45b-929708a78474</nacos.namespace>
             </properties>
             <activation>

@@ -4,12 +4,12 @@ spring:
   cloud:
     nacos:
       config:
-        server-addr: 47.107.246.54:8848
+        server-addr: localhost:8848
         extension-configs:
           - data-id: application.yaml
             refresh: true
       discovery:
-        server-addr: 47.107.246.54:8848
+        server-addr: localhost:8848
         ephemeral: true
     gateway:
       globalcors:
@@ -36,7 +36,7 @@ spring:
       ## 2. id 是一个路由规则的ID, uri则表示需要路由的地址，集注册中心后则为服务名
       ## 3. predicates 则代表HTTP请求路由的匹配规则，gateway中集成了大量的实现(GatewayAutoConfiguration)
       ##   例如通过Header/Cookie/参数等 进行匹配
-      ## 4. filter 则是对匹配通过后的Request再次进行一次更细粒度的过滤
+      ## 4. filter 则是对匹配通过后的Request再次进行一次更细粒度的过滤或则处理(熔断限流. 日志. 去掉某些url前缀)
         - id: nacos-consumer
           uri: lb://nacos-consumer
           predicates:
@@ -47,14 +47,13 @@ spring:
             ## 添加请求参数
             - AddRequestParameter=name,xz
             ## 熔断
-            - name: Hystrix
             ## 限流 目前测试限流后 抛出HTTP 429错误, 根据情况优化
-            - name: RequestRateLimiter
-              args:
-                keyResolver: "#{@hostKeyResolver}" # 缓存key 自定义生成策略类 SpEl表达式
-                redis-rate-limiter.replenishRate: 1 # 每秒生成令牌数 最小 1 也就是一秒内最少也能接受一个请求。
-                redis-rate-limiter.burstCapacity: 1 # 令牌桶容量 最小 0 结合生成令牌的速率 也就是令牌桶最多1秒能接受 3 个请求
-                redis-rate-limiter.requestedTokens: 1 # 一次请求所占用令牌数
+#            - name: RequestRateLimiter
+#              args:
+#                keyResolver: "#{@hostKeyResolver}" # 缓存key 自定义生成策略类 SpEl表达式
+#                redis-rate-limiter.replenishRate: 1 # 每秒生成令牌数 最小 1 也就是一秒内最少也能接受一个请求。
+#                redis-rate-limiter.burstCapacity: 1 # 令牌桶容量 最小 0 结合生成令牌的速率 也就是令牌桶最多1秒能接受 3 个请求
+#                redis-rate-limiter.requestedTokens: 1 # 一次请求所占用令牌数
   main:
     allow-bean-definition-overriding: true
   redis:

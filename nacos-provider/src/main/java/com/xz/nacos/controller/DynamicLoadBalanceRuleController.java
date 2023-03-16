@@ -2,7 +2,6 @@ package com.xz.nacos.controller;
 
 import com.alibaba.cloud.nacos.ribbon.NacosRule;
 import com.netflix.loadbalancer.*;
-import jdk.internal.org.objectweb.asm.Handle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.netflix.ribbon.SpringClientFactory;
 import org.springframework.web.bind.annotation.RequestBody;
