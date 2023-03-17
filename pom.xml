@@ -18,6 +18,7 @@
         <module>nacos-provider</module>
         <module>nacos-gateway</module>
         <module>nacos-address</module>
+        <module>nacos-mq</module>
     </modules>
 
     <dependencyManagement>
