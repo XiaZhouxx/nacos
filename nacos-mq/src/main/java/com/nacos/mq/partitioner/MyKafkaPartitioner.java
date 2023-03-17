@@ -3,6 +3,8 @@ package com.nacos.mq.partitioner;
 import org.apache.kafka.clients.producer.Partitioner;
 import org.apache.kafka.common.Cluster;
 import org.apache.kafka.common.PartitionInfo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.Map;
@@ -14,11 +16,13 @@ import java.util.Map;
  * @date 2023/3/16 16:55
  */
 public class MyKafkaPartitioner implements Partitioner {
+    private static final Logger log = LoggerFactory.getLogger(MyKafkaPartitioner.class);
     @Override
     public int partition(String topic, Object key, byte[] keyBytes, Object value, byte[] valueBytes, Cluster cluster) {
         // 分区.
         // 得到topic中的分区数
         final List<PartitionInfo> partitionInfos = cluster.partitionsForTopic(topic);
+        log.info("partitioner start, partition size : {}", partitionInfos.size());
         return 0;
     }
 
