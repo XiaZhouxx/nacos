@@ -2,10 +2,7 @@ package com.nacos.mq.consumer;
 
 import static org.apache.kafka.clients.consumer.ConsumerConfig.*;
 
-import org.apache.kafka.clients.consumer.ConsumerRebalanceListener;
-import org.apache.kafka.clients.consumer.ConsumerRecord;
-import org.apache.kafka.clients.consumer.ConsumerRecords;
-import org.apache.kafka.clients.consumer.KafkaConsumer;
+import org.apache.kafka.clients.consumer.*;
 import org.apache.kafka.common.TopicPartition;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,10 +11,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
 import java.time.Duration;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Properties;
-import java.util.Set;
+import java.util.*;
 
 /**
  * remark.
@@ -55,11 +49,21 @@ public class MyKafkaConsumer implements CommandLineRunner {
             });
 
             try {
+                final Map<TopicPartition, OffsetAndMetadata> offsets = new HashMap<>();
                 while (true) {
                     final ConsumerRecords<String, String> dataList = consumer.poll(Duration.ofMillis(100L));
                     for (ConsumerRecord<String, String> data : dataList) {
                         log.info("topic: [{}], partition: [{}], offset: [{}], message content: [{}]", data.topic(), data.partition(), data.offset(), data.value());
+
+                        TopicPartition tp = new TopicPartition(data.topic(), data.partition());
                     }
+
+                    // 异步, 并且指定提交 - offset
+                    consumer.commitAsync(offsets, (ofs, e) -> {
+
+                    });
+                    // 同步提交这一批次offset
+                    consumer.commitSync();
                 }
             } finally {
                 consumer.close();

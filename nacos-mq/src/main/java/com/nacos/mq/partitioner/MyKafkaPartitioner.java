@@ -20,7 +20,7 @@ public class MyKafkaPartitioner implements Partitioner {
     @Override
     public int partition(String topic, Object key, byte[] keyBytes, Object value, byte[] valueBytes, Cluster cluster) {
         // 分区.
-        // 得到topic中的分区数
+        // 得到topic中的分区数, 可以根据某个唯一标识计算hash值进行取余
         final List<PartitionInfo> partitionInfos = cluster.partitionsForTopic(topic);
         log.info("partitioner start, partition size : {}", partitionInfos.size());
         return 0;
