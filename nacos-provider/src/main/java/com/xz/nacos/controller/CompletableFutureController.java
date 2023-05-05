@@ -2,12 +2,12 @@ package com.xz.nacos.controller;
 
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
+import java.util.concurrent.*;
 
 @RestController
 public class CompletableFutureController {
     public static void main(String[] args) throws Exception{
+        ThreadPoolExecutor executor = new ThreadPoolExecutor(10, 10, 0L, TimeUnit.MILLISECONDS, new ArrayBlockingQueue<>(10));
         // 不带返回值的执行一个线程, == new Thread().start()
         CompletableFuture<Void> task1 = CompletableFuture.runAsync(() -> {
             try {
@@ -15,12 +15,12 @@ public class CompletableFutureController {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            println("task 1 running");
+            println(getTheadName() + "task 1 running");
         });
         // 会阻塞等待线程执行完毕
         // 带返回值的执行一个线程 = Callable
         CompletableFuture<String> task2 = CompletableFuture.supplyAsync(() -> {
-            println("task 2 running");
+            println(getTheadName() + "task 2 running");
 
             return "task 2 result";
         });
@@ -37,7 +37,7 @@ public class CompletableFutureController {
         // 1.1 thenApple(), 接收Function函数接口 R apply(R r), 也就是说基于上一个
         // 任务的返回作为参数, 最后返回一个值.
         CompletableFuture<Void> task3 = task1.thenApply((r) -> {
-            println("task3 success");
+            println(getTheadName() + "task3 success");
             return r;
         });
 
@@ -131,6 +131,7 @@ public class CompletableFutureController {
         CompletableFuture<String> compositeResult = CompletableFuture.allOf(task1, task2, task3).thenApply(v -> {
             String s = task2.join();
 
+            System.out.println("all of task2 result : " + s);
             return "compositeResult";
         });
 
@@ -150,6 +151,11 @@ public class CompletableFutureController {
         task1.get();
         task7.get();
     }
+
+    private static String getTheadName() {
+        return Thread.currentThread().getName();
+    }
+
     public static void println(String msg) {
         System.out.println(Thread.currentThread().getName() + ": " + msg);
     }

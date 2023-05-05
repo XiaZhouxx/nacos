@@ -7,6 +7,8 @@ spring:
         server-addr: 47.108.182.31:8848
         namespace: dev
         file-extension: yml
+        group: dev
+        refresh-enabled: true
       discovery:
         server-addr: 47.108.182.31:8848
         ephemeral: true
@@ -14,5 +16,7 @@ spring:
     sentinel:
       transport:
         dashboard: 127.0.0.1:8080
+  profiles:
+    active: dev
   main:
     allow-bean-definition-overriding: true

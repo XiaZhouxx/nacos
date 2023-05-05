@@ -21,7 +21,6 @@ public class NacosConfigController {
 
     @SentinelResource
     @RequestMapping("/history")
-    @SentinelResource
     public Object getConfigHistory() {
         return history.getRecords();
     }
