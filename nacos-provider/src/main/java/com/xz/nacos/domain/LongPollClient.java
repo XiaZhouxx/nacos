@@ -4,8 +4,14 @@ import javax.servlet.AsyncContext;
 import javax.servlet.http.HttpServletResponse;
 
 public class LongPollClient {
+    /**
+     * http 请求对象
+     */
     HttpServletResponse rsp;
 
+    /**
+     * 异步上下文
+     */
     AsyncContext ac;
 
     public HttpServletResponse getRsp() {
