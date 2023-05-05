@@ -23,6 +23,11 @@ public class MyKafkaPartitioner implements Partitioner {
         // 得到topic中的分区数, 可以根据某个唯一标识计算hash值进行取余
         final List<PartitionInfo> partitionInfos = cluster.partitionsForTopic(topic);
         log.info("partitioner start, partition size : {}", partitionInfos.size());
+        if (key instanceof String) {
+            if ("测试消息".equals(key)) {
+                log.info("测试消息分区分发");
+            }
+        }
         return 0;
     }
 

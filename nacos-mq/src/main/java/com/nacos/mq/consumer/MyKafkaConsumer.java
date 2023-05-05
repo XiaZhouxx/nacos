@@ -6,6 +6,7 @@ import org.apache.kafka.clients.consumer.*;
 import org.apache.kafka.common.TopicPartition;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
@@ -22,13 +23,16 @@ import java.util.*;
 @Component
 public class MyKafkaConsumer implements CommandLineRunner {
 
+    @Value("${kafka.servers.url:192.168.132.136:9092}")
+    String kafkaServiceUrl;
+
     private static final Logger log = LoggerFactory.getLogger(MyKafkaConsumer.class);
 
     @Override
     public void run(String... args) throws Exception {
         new Thread(() -> {
             Properties consumerPts = new Properties();
-            consumerPts.put(BOOTSTRAP_SERVERS_CONFIG, "192.168.254.110:9092,192.168.254.111:9092,192.168.254.112:9092");
+            consumerPts.put(BOOTSTRAP_SERVERS_CONFIG, kafkaServiceUrl);
             consumerPts.put(GROUP_ID_CONFIG, "local_test");
             consumerPts.put(KEY_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
             consumerPts.put(VALUE_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");

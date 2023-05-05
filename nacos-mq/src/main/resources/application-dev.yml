@@ -1,2 +1,5 @@
 server:
   port: 8888
+kafka:
+  servers:
+    url: 192.168.132.136:9092
