@@ -23,6 +23,7 @@ public class Sort {
         if (l >= r) {
             return;
         }
+        swap(arr, l + (int)(Math.random() * (r - l) + 1), r);
         int[] dataRange = doSort(arr, l, r);
         System.out.println(Arrays.toString(dataRange));
         doQuickSort(arr, l, dataRange[0] - 1);
