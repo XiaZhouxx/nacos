@@ -23,9 +23,45 @@ import javax.annotation.Resource;
 public class RouterController implements ApplicationEventPublisherAware {
     @Autowired
     RouteDefinitionWriter routeDefinitionWriter;
+
     ApplicationEventPublisher applicationEventPublisher;
     @Resource
     GatewayProperties gatewayProperties;
+
+    /**
+     *
+     * 动态路由大致需要的参数, 内置的一个filter 和 predicate 需要根据具体的config来生成args
+     *
+     * {
+     *     "id": "nacos-provider",
+     *     "uri": "lb://nacos-provider",
+     *     "filters": [
+     *         {
+     *             "name": "My",
+     *             "args": {
+     *                 "name": "API测试",
+     *                 "value": "API值"
+     *             }
+     *         },
+     *         {
+     *             "name": "StripPrefix",
+     *             "args": {
+     *                 "parts": 1
+     *             }
+     *         }
+     *     ],
+     *     "predicates": [
+     *         {
+     *             "name": "Path",
+     *             "args": {
+     *                 "patterns": "/nacos-provider/**"
+     *             }
+     *         }
+     *     ]
+     * }
+     *
+     *
+     */
 
     @PostMapping(value = "/add")
     public BaseResult addRoute(@RequestBody RouteDefinition definition) {

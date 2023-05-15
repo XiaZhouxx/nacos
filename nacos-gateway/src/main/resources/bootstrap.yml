@@ -1,15 +1,19 @@
 spring:
+  datasource:
+    url: jdbc:mysql:///gateway
+    username: root
+    password: 118756
   application:
     name: nacos-gateway
   cloud:
     nacos:
       config:
-        server-addr: localhost:8848
+        server-addr: 47.108.182.31:8848/
         extension-configs:
           - data-id: application.yaml
             refresh: true
       discovery:
-        server-addr: localhost:8848
+        server-addr: 47.108.182.31:8848/
         ephemeral: true
     gateway:
       globalcors:
@@ -30,22 +34,29 @@ spring:
       discovery:
         locator:
           enabled: true #启用服务发现组件使其可以采用服务名路由
-      routes:
+#      routes:
       ## 一组route 集合
       ## 1. 一个route 由一个id,uri 一组predicate(谓词 predicates) 一组filter(filters) 组成
       ## 2. id 是一个路由规则的ID, uri则表示需要路由的地址，集注册中心后则为服务名
       ## 3. predicates 则代表HTTP请求路由的匹配规则，gateway中集成了大量的实现(GatewayAutoConfiguration)
       ##   例如通过Header/Cookie/参数等 进行匹配
       ## 4. filter 则是对匹配通过后的Request再次进行一次更细粒度的过滤或则处理(熔断限流. 日志. 去掉某些url前缀)
-        - id: nacos-consumer
-          uri: lb://nacos-consumer
-          predicates:
-            - Path=/nacos-consumer/**
-          filters:
-            ## 转发路由跳过路径前缀 网关接收 -> /1/2/3 -> filter -> /2/3
-            - StripPrefix=1
-            ## 添加请求参数
-            - AddRequestParameter=name,xz
+#        - id: nacos-provider
+#          uri: lb://nacos-provider
+#          predicates:
+#            - Path=/nacos-provider/**
+#          filters:
+#            - My=测试name,测试value
+#            - StripPrefix=1
+#        - id: nacos-consumer
+#          uri: lb://nacos-consumer
+#          predicates:
+#            - Path=/nacos-consumer/**
+#          filters:
+#            ## 转发路由跳过路径前缀 网关接收 -> /1/2/3 -> filter -> /2/3
+#            - StripPrefix=1
+#            ## 添加请求参数
+#            - AddRequestParameter=name,xz
             ## 熔断
             ## 限流 目前测试限流后 抛出HTTP 429错误, 根据情况优化
 #            - name: RequestRateLimiter
