@@ -67,34 +67,36 @@ public class MaxHeap<T> {
     }
 
     public static void main(String[] args) {
-        MaxHeap<Integer> integerMaxHeap = new MaxHeap<>(new Integer[10]);
-        integerMaxHeap.add(10);
-        integerMaxHeap.add(6);
-        integerMaxHeap.add(8);
-        integerMaxHeap.add(19);
-        integerMaxHeap.add(15);
-        integerMaxHeap.add(18);
-        integerMaxHeap.add(16);
+//        MaxHeap<Integer> integerMaxHeap = new MaxHeap<>(new Integer[10]);
+//        integerMaxHeap.add(10);
+//        integerMaxHeap.add(6);
+//        integerMaxHeap.add(8);
+//        integerMaxHeap.add(19);
+//        integerMaxHeap.add(15);
+//        integerMaxHeap.add(18);
+//        integerMaxHeap.add(16);
+//
+//
+//
+//        for (int i = 0; i < 7;i ++) {
+//            System.out.println(Arrays.toString(integerMaxHeap.values));
+//            System.out.println(integerMaxHeap.poll());
+//        }
 
-
-
-        for (int i = 0; i < 7;i ++) {
-            System.out.println(Arrays.toString(integerMaxHeap.values));
-            System.out.println(integerMaxHeap.poll());
+        int[] nums = new int[]{10, 16, 6, 19, 15, 8};
+        int r = nums.length;
+        for (int i = nums.length / 2; i >= 0; i--) {
+            heapify(nums, i, r);
         }
-
-//        int[] nums = new int[]{10, 16, 6, 19, 15, 8};
-//        int r = nums.length;
-//        for (int i = nums.length - 1; i >= 0; i--) {
-//            heapify(nums, i, r);
-//        }
-//        while (r > 0) {
-//            int temp = nums[r - 1];
-//            nums[r - 1] = nums[0];
-//            nums[0] = temp;
-//            r--;
-//            heapify(nums, 0, r);
-//        }
+        System.out.println("---------------- sort end -----------------");
+        while (r > 0) {
+            int temp = nums[r - 1];
+            nums[r - 1] = nums[0];
+            nums[0] = temp;
+            r--;
+            heapify(nums, 0, r);
+        }
+        System.out.println(Arrays.toString(nums));
     }
 
     private static void heapify(int[] nums, int i, int r) {
