@@ -1,4 +1,4 @@
-package com.xz.nacos.domain;
+package com.xz.nacos.algorithm;
 
 import org.apache.commons.lang.StringUtils;
 

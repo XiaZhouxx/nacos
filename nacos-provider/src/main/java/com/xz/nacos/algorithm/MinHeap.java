@@ -1,4 +1,4 @@
-package com.xz.nacos.domain;
+package com.xz.nacos.algorithm;
 
 import java.util.Arrays;
 import java.util.Comparator;
