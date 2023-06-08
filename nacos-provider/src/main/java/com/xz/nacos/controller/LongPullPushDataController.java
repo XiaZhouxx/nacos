@@ -1,6 +1,9 @@
 package com.xz.nacos.controller;
 
 import com.xz.nacos.domain.LongPollClient;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.Getter;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -59,8 +62,8 @@ public class LongPullPushDataController {
     @RequestMapping("/v2/watch/{id}")
     public void watchV2(@PathVariable String id, HttpServletRequest req, HttpServletResponse rsp) {
         AsyncContext asyncContext = req.startAsync();
-
-        asyncContext.setTimeout(10000L);
+        // 超时时间. 0L 表示不超时
+        asyncContext.setTimeout(0L);
 
         LongPollClient client = new LongPollClient();
         client.setAc(asyncContext);
