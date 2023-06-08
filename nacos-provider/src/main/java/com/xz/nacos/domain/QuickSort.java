@@ -6,7 +6,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class Sort {
+/**
+ * 快排
+ */
+public class QuickSort {
 
     public static int getDigit(int num, int p) {
         while (--p > 0) {
@@ -23,6 +26,7 @@ public class Sort {
         if (l >= r) {
             return;
         }
+        // 随机快排. 避免 o(n logN)
         swap(arr, l + (int)(Math.random() * (r - l) + 1), r);
         int[] dataRange = doSort(arr, l, r);
         System.out.println(Arrays.toString(dataRange));
