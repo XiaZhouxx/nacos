@@ -35,7 +35,7 @@ public class SentinelController {
 
     @GetMapping("/initFlow")
     public String initFlowRule() {
-        List<FlowRule> rules = new ArrayList<>();
+        List<FlowRule> rules = FlowRuleManager.getRules();
         FlowRule rule = new FlowRule();
         rules.add(rule);
         FlowRuleManager.loadRules(rules);
