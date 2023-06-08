@@ -47,7 +47,7 @@ public class TrieTree {
         // 根节点的通过数加1, 可以理解成以当前前缀下有多少字符串
         char[] c = word.toCharArray();
         root.pass++;
-        TreeNode[] next = root.nodes;
+        TreeNode[] next = root.children;
         TreeNode last = root;
         for (char value : c) {
             int idx = value - 'a';
@@ -57,7 +57,7 @@ public class TrieTree {
                 next[idx] = last;
             }
             last.pass++;
-            next = last.nodes;
+            next = last.children;
         }
         last.end ++;
     }
@@ -75,7 +75,7 @@ public class TrieTree {
         TreeNode node = root;
         for (char value : c) {
             int idx = value - 'a';
-            TreeNode next = node.nodes[idx];
+            TreeNode next = node.children[idx];
             if (next == null) {
                 return 0;
             }
@@ -91,10 +91,10 @@ public class TrieTree {
             char[] cr = word.toCharArray();
             for (char c : cr) {
                 int idx = c - 'a';
-                TreeNode next = node.nodes[idx];
+                TreeNode next = node.children[idx];
                 next.pass--;
                 if (next.pass == 0) {
-                    node.nodes[idx] = null;
+                    node.children[idx] = null;
                     return true;
                 }
                 node = next;
@@ -106,14 +106,27 @@ public class TrieTree {
     }
 
     static class TreeNode {
+        /**
+         * 记录通过该数的数量(可用作统计)
+         */
         private int pass;
 
+        /**
+         * 记录在该字符结束的数量
+         */
         private int end;
 
-        private TreeNode[] nodes;
+        /**
+         * 前缀树 的children, 这里简单用例只存储小写字符
+         * 只采用了 26长度的数组, 字符类型多的还是采用hash表
+         *
+         *
+         * Map<Character, TreeNode> children;
+         */
+        private TreeNode[] children;
 
         public TreeNode() {
-            nodes = new TreeNode[26];
+            children = new TreeNode[26];
         }
     }
 }
