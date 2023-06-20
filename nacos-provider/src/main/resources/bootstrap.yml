@@ -7,7 +7,7 @@ spring:
         server-addr: 47.108.182.31:8848
         namespace: dev
         file-extension: yml
-        group: dev
+#        group: dev
         refresh-enabled: true
       discovery:
         server-addr: 47.108.182.31:8848
