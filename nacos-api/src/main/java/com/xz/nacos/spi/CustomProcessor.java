@@ -2,7 +2,6 @@ package com.xz.nacos.spi;
 
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Sets;
-import com.xz.nacos.annotation.AutoService;
 import com.xz.nacos.annotation.CustomService;
 
 import javax.annotation.processing.*;
@@ -15,8 +14,6 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -25,15 +22,14 @@ import java.util.TreeSet;
  * @date 2023/6/15 17:58
  */
 @SupportedOptions({"debug", "verify"})
-@SupportedAnnotationTypes("*")
 public class CustomProcessor extends AbstractProcessor {
     public SourceVersion getSupportedSourceVersion() {
         return SourceVersion.latestSupported();
     }
 
-//    public ImmutableSet<String> getSupportedAnnotationTypes() {
-//        return ImmutableSet.of(CustomService.class.getName());
-//    }
+    public ImmutableSet<String> getSupportedAnnotationTypes() {
+        return ImmutableSet.of(CustomService.class.getName());
+    }
 
     public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
         try {
