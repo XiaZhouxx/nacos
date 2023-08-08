@@ -40,7 +40,9 @@ public class NacosConfigEnvListener  implements ApplicationListener<RefreshEvent
 
     @Resource
     Environment env;
-
+    /**
+     * 环境后缀分割
+     */
     private static final String SEP1 = "-";
 
     private static final String DOT = ".";
@@ -57,8 +59,12 @@ public class NacosConfigEnvListener  implements ApplicationListener<RefreshEvent
         if (StringUtils.isEmpty(dataIdPrefix)) {
             dataIdPrefix = env.getProperty("spring.application.name");
         }
+
         String fileExtension = nacosConfigProperties.getFileExtension();
+        // String profile = env.getActiveProfiles()[0];
+        // String dataId = dataIdPrefix + SPE1 + profile + DOT + fileExtension;
         String dataId = dataIdPrefix + DOT + fileExtension;
+        // 这里只能拿到的变更元素的key 新值 旧值
         configManager.getConfigService().addListener(dataId, nacosConfigProperties.getGroup(), new AbstractConfigChangeListener() {
             @Override
             public void receiveConfigChange(ConfigChangeEvent event) {
@@ -69,11 +75,23 @@ public class NacosConfigEnvListener  implements ApplicationListener<RefreshEvent
                 }
             }
         });
+        // 这里拿到的是全量配置
+        configManager.getConfigService().addListener(dataId, nacosConfigProperties.getGroup(), new Listener() {
+            @Override
+            public Executor getExecutor() {
+                return null;
+            }
+
+            @Override
+            public void receiveConfigInfo(String configInfo) {
+                // 可以基于全量配置拿到想要的配置集, YamlUtil.load(new StringReader(configInfo)), 如果是json就更好处理了, JSONObject.parse(configInfo);
+                log.info(configInfo);
+            }
+        });
     }
 
     @Override
     public void onApplicationEvent(RefreshEvent event) {
-        System.out.println(event);
         System.out.println(event.getEventDesc());
     }
 }
