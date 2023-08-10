@@ -16,12 +16,8 @@ import java.util.stream.Collectors;
  * @author xz
  * @date 2023/6/23 11:13
  */
-@AutoService(Processor.class)
-public class TestService extends AbstractProcessor {
-    @Override
-    public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
-        return false;
-    }
+@CustomService
+public class TestService {
 
     public static void main(String[] args) {
         List<int[]> i = new ArrayList<>();

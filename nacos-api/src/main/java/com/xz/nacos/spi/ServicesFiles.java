@@ -51,6 +51,26 @@ public class ServicesFiles {
             closer.close();
         }
     }
+    static final String SPT = ",\\";
+
+    static final String TITLE = "org.springframework.boot.autoconfigure.EnableAutoConfiguration=\\";
+
+    static void writeSpringFactoriesFile(Collection<String> services, OutputStream output) throws IOException {
+        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(output, Charsets.UTF_8));
+        Iterator i$ = services.iterator();
+        writer.write(TITLE);
+        writer.newLine();
+        while(i$.hasNext()) {
+            String config = (String)i$.next();
+            if (i$.hasNext()) {
+                config += SPT;
+            }
+            writer.write(config);
+            writer.newLine();
+        }
+
+        writer.flush();
+    }
 
     static void writeServiceFile(Collection<String> services, OutputStream output) throws IOException {
         BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(output, Charsets.UTF_8));
