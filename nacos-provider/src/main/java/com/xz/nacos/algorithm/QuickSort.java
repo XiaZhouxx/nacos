@@ -34,6 +34,14 @@ public class QuickSort {
         doQuickSort(arr, dataRange[1] + 1, r);
     }
 
+
+    /**
+     * 当数组存在重复项时，则需要一个数组来记录排序元素的位置范围
+     * @param arr 目标数组
+     * @param l
+     * @param r
+     * @return
+     */
     public static int[] doSort(int[] arr, int l, int r) {
         int li = l, val = arr[r];
         while (li <= r) {

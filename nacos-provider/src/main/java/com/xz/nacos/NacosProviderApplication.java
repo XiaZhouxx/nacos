@@ -14,6 +14,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 @SpringBootApplication
 @EnableDiscoveryClient
 public class NacosProviderApplication {
+    
     public static void main(String[] args) {
         CustomProcessor cp = new CustomProcessor();
         SpringApplication.run(NacosProviderApplication.class, args);
