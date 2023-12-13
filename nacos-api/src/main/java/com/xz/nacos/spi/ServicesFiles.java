@@ -57,6 +57,9 @@ public class ServicesFiles {
 
     static void writeSpringFactoriesFile(Collection<String> services, OutputStream output) throws IOException {
         BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(output, Charsets.UTF_8));
+        if (services == null || services.isEmpty()) {
+            return ;
+        }
         Iterator i$ = services.iterator();
         writer.write(TITLE);
         writer.newLine();

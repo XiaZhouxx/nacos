@@ -25,7 +25,7 @@
     <dependencyManagement>
         <!--
             如果使用SpringCloud基础包 必须使用2.1.0以上版本,否则导致不能注册(@EventListener机制)
-            最好还是使用alibaba已经管理整合的包, 使用Springcloud下的alibaba组件是项目未孵化完成期间
+`            最好还是使用alibaba已经管理整合的包, 使用Springcloud group下的alibaba组件是项目未孵化完成期间
             目前已经不推荐这样使用。
         -->
         <dependencies>

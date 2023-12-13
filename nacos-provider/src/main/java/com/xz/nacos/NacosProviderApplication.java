@@ -1,9 +1,10 @@
 package com.xz.nacos;
 
-import com.xz.nacos.spi.CustomProcessor;
+import com.alibaba.csp.sentinel.command.CommandCenterProvider;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.context.ConfigurableApplicationContext;
 
 /**
  * @author xz
@@ -15,8 +16,19 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 @EnableDiscoveryClient
 public class NacosProviderApplication {
     
-    public static void main(String[] args) {
-        CustomProcessor cp = new CustomProcessor();
-        SpringApplication.run(NacosProviderApplication.class, args);
+    public static void main(String[] args) throws Exception {
+
+        ConfigurableApplicationContext run = SpringApplication.run(NacosProviderApplication.class, args);
+        // 优雅的关闭Spring boot 服务.
+//        run.close();
+        // 当时服务使用了sentinel, 需要手动关闭sentinel, 否则进程还是会挂起
+//        CommandCenterProvider.getCommandCenter().stop();
+//        Thread shutdownHook = new Thread("CUSTOM") {
+//            @Override
+//            public void run() {
+//                log.info("shutdownHook start");
+//            }
+//        };
+//        Runtime.getRuntime().addShutdownHook(shutdownHook);
     }
 }
