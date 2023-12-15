@@ -15,7 +15,14 @@ import org.springframework.context.ConfigurableApplicationContext;
 @SpringBootApplication
 @EnableDiscoveryClient
 public class NacosProviderApplication {
-    
+
+    /**
+     * spring boot 加配置中心的配置加载优先级
+     * 1. 在spring cloud 环境下 优先加载bootstrap.yml (默认配置spring.cloud.bootstrap.enabled:true|spring.cloud.bootstrap.name:bootstrap)
+     * 2. 然后加载application.yml/properties/yaml/xml (默认配置 spring.config.name:application)
+     * 3. 最后加载配置中心的配置
+     * 后加载的配置会覆盖之前加载的配置
+     */
     public static void main(String[] args) throws Exception {
 
         ConfigurableApplicationContext run = SpringApplication.run(NacosProviderApplication.class, args);

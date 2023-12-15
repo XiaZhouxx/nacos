@@ -22,6 +22,8 @@
 #    allow-bean-definition-overriding: true
 
 ## local
+server:
+  port: 8181
 spring:
   application:
     name: nacos-provider

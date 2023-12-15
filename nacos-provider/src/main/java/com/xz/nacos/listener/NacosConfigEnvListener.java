@@ -4,6 +4,7 @@ import com.alibaba.cloud.nacos.NacosConfigManager;
 import com.alibaba.cloud.nacos.NacosConfigProperties;
 import com.alibaba.nacos.api.config.ConfigChangeEvent;
 import com.alibaba.nacos.api.config.ConfigChangeItem;
+import com.alibaba.nacos.api.config.ConfigService;
 import com.alibaba.nacos.api.config.listener.Listener;
 import com.alibaba.nacos.api.exception.NacosException;
 import com.alibaba.nacos.client.config.NacosConfigService;
@@ -50,6 +51,8 @@ public class NacosConfigEnvListener  implements ApplicationListener<RefreshEvent
     @PostConstruct
     public void init() throws NacosException {
         String name = nacosConfigProperties.getName();
+        ConfigService service = configManager.getConfigService();
+
 
         String dataIdPrefix = nacosConfigProperties.getPrefix();
         if (StringUtils.isEmpty(dataIdPrefix)) {
