@@ -1,16 +1,9 @@
 package com.xz.nacos;
 
-import com.google.common.collect.Lists;
-import com.xz.nacos.annotation.AutoService;
+import com.sun.tools.attach.VirtualMachine;
 import com.xz.nacos.annotation.CustomService;
-import org.springframework.cloud.openfeign.FeignClient;
 
-import javax.annotation.processing.AbstractProcessor;
-import javax.annotation.processing.Processor;
-import javax.annotation.processing.RoundEnvironment;
-import javax.lang.model.element.TypeElement;
-import java.util.*;
-import java.util.stream.Collectors;
+import java.io.IOException;
 
 /**
  * @author xz
@@ -19,19 +12,22 @@ import java.util.stream.Collectors;
 @CustomService
 public class TestService {
 
-    public static void main(String[] args) {
-        List<int[]> i = new ArrayList<>();
-        i.add(new int[]{1,3,5});
-        i.add(new int[]{2,4,6});
-        // stream流里面的元素也是集合类型时, 单纯的map要么类型不变 要么只能映射为某个单对象
-        List<Integer> collect = i.stream().flatMap(id -> {
-            List<Integer> i1 = new ArrayList<>();
-            for (int ii : id) {
-                i1.add(ii);
-            }
-            return i1.stream();
-        }).collect(Collectors.toList());
-        System.out.println(collect);
+    public static void main(String[] args) throws Exception {
+        VirtualMachine vm = VirtualMachine.attach("88904");
+        // agent包的绝对路径
+        vm.loadAgent("/Users/xiazhou/IdeaProjects/nacos/nacos-agent/target/nacos-agent-1.0-SNAPSHOT-jar-with-dependencies.jar");
+//        List<int[]> i = new ArrayList<>();
+//        i.add(new int[]{1,3,5});
+//        i.add(new int[]{2,4,6});
+//        // stream流里面的元素也是集合类型时, 单纯的map要么类型不变 要么只能映射为某个单对象
+//        List<Integer> collect = i.stream().flatMap(id -> {
+//            List<Integer> i1 = new ArrayList<>();
+//            for (int ii : id) {
+//                i1.add(ii);
+//            }
+//            return i1.stream();
+//        }).collect(Collectors.toList());
+//        System.out.println(collect);
 
 //        List<String[]> i = new ArrayList<>();
 //        i.add(new String[]{"1","3","5"});

@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Created-By: xz
+Premain-Class: com.xz.nacos.CustomAgent
+Agent-Class: com.xz.nacos.CustomAgent
+Can-Redefine-Classes: true
+Can-Retransform-Classes: true

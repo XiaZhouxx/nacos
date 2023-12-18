@@ -20,6 +20,7 @@
         <module>nacos-address</module>
         <module>nacos-mq</module>
         <module>nacos-api</module>
+        <module>nacos-agent</module>
     </modules>
 
     <dependencyManagement>
