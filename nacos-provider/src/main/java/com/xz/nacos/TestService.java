@@ -11,11 +11,11 @@ import java.io.IOException;
  */
 @CustomService
 public class TestService {
-
     public static void main(String[] args) throws Exception {
+        // 获取jvm进程, 88904是进程id(jps获取)
         VirtualMachine vm = VirtualMachine.attach("88904");
         // agent包的绝对路径
-        vm.loadAgent("/Users/xiazhou/IdeaProjects/nacos/nacos-agent/target/nacos-agent-1.0-SNAPSHOT-jar-with-dependencies.jar");
+        vm.loadAgent("/Users/xiazhou/IdeaProjects/nacos/nacos-agent/target/nacos-agent-1.0-SNAPSHOT-jar-with-dependencies.jar", "args");
 //        List<int[]> i = new ArrayList<>();
 //        i.add(new int[]{1,3,5});
 //        i.add(new int[]{2,4,6});
