@@ -19,7 +19,9 @@ public class TrieTree {
      *          a        b
      *       b             c
      *    c    s             d
-     *                         e
+     *           a              e
+     *
+     *   number = 10
      */
     public static void main(String[] args) {
         TrieTree tree = new TrieTree();
