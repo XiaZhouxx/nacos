@@ -108,13 +108,17 @@ public class HeapGreater<T> {
 
     private void heapUp(int idx) {
         while (idx > 0) {
-            int parent = (idx - 1) >> 1;
+            int parent = parent(idx);
             if (cmp.compare(heap.get(parent), heap.get(idx)) < 0) {
                 break;
             }
             swap(parent, idx);
             idx = parent;
         }
+    }
+
+    public int parent(int idx) {
+        return (idx - 1) >> 1;
     }
 
     private void swap(int i1, int i2) {
