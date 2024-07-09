@@ -1,4 +1,4 @@
-package com.xz.nacos.algorithm;
+package com.xz.nacos.algorithm.sort;
 
 import java.util.Arrays;
 
@@ -20,9 +20,11 @@ public class InsertSort {
             int j = i - 1;
             // 从后往前找，找到最靠前比temp小的数下标
             while (j >= 0 && arr[j] > temp) {
+                // 将比当前值大的左移
                 arr[j + 1] = arr[j];
                 j--;
             }
+            // 需要插入的位置
             arr[j + 1] = temp;
         }
     }

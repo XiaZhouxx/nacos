@@ -24,6 +24,7 @@ public class TrieTree {
      *   number = 10
      */
     public static void main(String[] args) {
+
         TrieTree tree = new TrieTree();
         tree.add("abc");
         tree.add("abcd");

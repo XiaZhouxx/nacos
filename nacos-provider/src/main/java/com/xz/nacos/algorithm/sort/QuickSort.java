@@ -1,4 +1,4 @@
-package com.xz.nacos.algorithm;
+package com.xz.nacos.algorithm.sort;
 
 
 import java.util.Arrays;

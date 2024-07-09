@@ -8,13 +8,17 @@ import java.util.List;
  * @author xz
  * @since 2024/2/19 10:04
  */
-public class StrPattern {
+public class KMPStrPattern {
     public static void main(String[] args) {
         String pattern = "abab";
         /**
          * abab
          * 前缀： a ab aba
          * 后缀： b ab bab
+         * abab = [0,0,1,2]
+         * 当匹配 aba的时候失配, 回滚到 b继续匹配
+         *
+         * 当失配的时候回滚的辅助数组
          */
         int[] help = new int[pattern.length()];
         // 最大匹配长度
@@ -30,6 +34,7 @@ public class StrPattern {
             }
             help[i] = maxLen;
         }
+        System.out.println(Arrays.toString(help));
 
         System.out.println(matchCount("abcababcbabcabanbabab", help, pattern));
     }
@@ -42,6 +47,7 @@ public class StrPattern {
             while (match > 0 && s.charAt(i) != pattern.charAt(match)) {
                 match = help[match - 1];
             }
+            // 匹配模式串的长度
             if (s.charAt(i) == pattern.charAt(match)) {
                 match ++;
             }
