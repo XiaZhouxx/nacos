@@ -7,10 +7,12 @@ import com.xz.nacos.mapper.GatewayRouteMapper;
 import org.springframework.cloud.gateway.route.RouteDefinition;
 import org.springframework.cloud.gateway.route.RouteDefinitionRepository;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,7 +28,7 @@ public class InMysqlRouteDefinitionRepository implements RouteDefinitionReposito
 
     @Override
     public Flux<RouteDefinition> getRouteDefinitions() {
-        // gateway 内部有缓存机制, 这里虽然是实时查的, 但是变更之后还需要手动触发事件清除缓存 RefreshRoutesEvent
+        // gateway 内部有缓存机制, 这里虽然是实时查的, 如果变更之后还需要手动触发事件清除缓存 RefreshRoutesEvent
         List<RouteInfo> all = routeMapper.selectList(null);
         return Flux.fromIterable(
                 all.stream()
@@ -37,6 +39,7 @@ public class InMysqlRouteDefinitionRepository implements RouteDefinitionReposito
 
 
     @Override
+    @Transactional
     public Mono<Void> save(Mono<RouteDefinition> route) {
         return route.flatMap(r -> {
             if (StringUtils.isEmpty(r.getId())) {

@@ -28,7 +28,7 @@ public class UserController {
      * @return
      */
     @RequestMapping("/register")
-    private Object register() {
+    public Object register() {
         ts.service();
         return "success";
     }

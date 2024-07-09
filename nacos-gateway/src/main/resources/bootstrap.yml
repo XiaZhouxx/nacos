@@ -8,12 +8,12 @@ spring:
   cloud:
     nacos:
       config:
-        server-addr: 47.108.182.31:8848/
+        server-addr: localhost:8848/
         extension-configs:
           - data-id: application.yaml
             refresh: true
       discovery:
-        server-addr: 47.108.182.31:8848/
+        server-addr: localhost:8848/
         ephemeral: true
     gateway:
       globalcors:
@@ -63,7 +63,7 @@ spring:
               args:
                 keyResolver: "#{@hostKeyResolver}" # 缓存key 自定义生成策略类 SpEl表达式
                 redis-rate-limiter.replenishRate: 1 # 每秒生成令牌数 最小 1 也就是一秒内最少也能接受一个请求。
-                redis-rate-limiter.burstCapacity: 1 # 令牌桶容量 最小 0 结合生成令牌的速率 也就是令牌桶最多1秒能接受 3 个请求
+                redis-rate-limiter.burstCapacity: 3 # 令牌桶容量 最小 0 结合生成令牌的速率 也就是令牌桶最多1秒能接受 3 个请求, 当压力较小时可以存储令牌 但是压力大时其实只能使用每秒令牌
                 redis-rate-limiter.requestedTokens: 1 # 一次请求所占用令牌数
   main:
     allow-bean-definition-overriding: true

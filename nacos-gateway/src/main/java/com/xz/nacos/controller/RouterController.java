@@ -65,6 +65,7 @@ public class RouterController implements ApplicationEventPublisherAware {
 
     @PostMapping(value = "/add")
     public BaseResult addRoute(@RequestBody RouteDefinition definition) {
+        routeDefinitionWriter.delete(Mono.just(definition.getId())).subscribe();
         routeDefinitionWriter.save(Mono.just(definition)).subscribe();
         gatewayProperties.getRoutes().add(definition);
         this.applicationEventPublisher.publishEvent(new RefreshRoutesEvent(this));
