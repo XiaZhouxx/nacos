@@ -11,15 +11,15 @@ import java.lang.reflect.Method;
  * @since 2024/7/9 10:14
  */
 public class ReflectTest {
-    public static void main(String[] args) throws Exception {
-        ReflectUser user = new ReflectUser();
-
-        Class<? extends ReflectPerson> aClass = user.getClass();
-
-        Method method = aClass.getDeclaredMethod("say");
-
-        method.setAccessible(true);
-
-        method.invoke(user);
-    }
+//    public static void main(String[] args) throws Exception {
+//        ReflectUser user = new ReflectUser();
+//
+//        Class<? extends ReflectPerson> aClass = user.getClass();
+//
+//        Method method = aClass.getDeclaredMethod("say");
+//
+//        method.setAccessible(true);
+//
+//        method.invoke(user);
+//    }
 }

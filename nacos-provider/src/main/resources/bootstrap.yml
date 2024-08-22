@@ -30,19 +30,18 @@ spring:
   cloud:
     nacos:
       config:
-        server-addr: 10.0.204.9:8848
+        server-addr: localhost:8848
 #        namespace: dev
         file-extension: yml
         refresh-enabled: true
+        extension-configs: gateway.json
       discovery:
-        server-addr: 10.0.204.9:8848
+        server-addr: localhost:8848
         ephemeral: true
 #        namespace: dev
 #    sentinel:
 #      transport:
 #        dashboard: localhost:8080
-  profiles:
-    active: dev
   main:
     allow-bean-definition-overriding: true
 

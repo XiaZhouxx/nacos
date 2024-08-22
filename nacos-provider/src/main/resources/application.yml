@@ -7,7 +7,6 @@ spring:
     password: 118756
     driver-class-name: com.mysql.cj.jdbc.Driver
 ---
-# 以文档块的方式区分环境变量
 spring:
   profiles: test
 test:

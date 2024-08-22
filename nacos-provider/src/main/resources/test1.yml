@@ -1,46 +1,9 @@
-## test
-#spring:
-#  application:
-#    name: nacos-provider
-#  cloud:
-#    nacos:
-#      config:
-#        server-addr: 47.108.182.31:8848
-#        namespace: dev
-#        file-extension: yml
-#        refresh-enabled: true
-#      discovery:
-#        server-addr: 47.108.182.31:8848
-#        ephemeral: true
-#        namespace: dev
-#    sentinel:
-#      transport:
-#        dashboard: 127.0.0.1:8080
-#  profiles:
-#    active: dev
-#  main:
-#    allow-bean-definition-overriding: true
-
-## local
 spring:
-  application:
-    name: nacos-provider
-  cloud:
-    nacos:
-      config:
-        server-addr: localhost:8848
-#        namespace: dev
-        file-extension: yml
-        refresh-enabled: true
-      discovery:
-        server-addr: localhost:8848
-        ephemeral: true
-#        namespace: dev
-#    sentinel:
-#      transport:
-#        dashboard: localhost:8080
-  profiles:
-    active: dev
-  main:
-    allow-bean-definition-overriding: true
-
+  profiles: test
+test:
+  config: 123
+---
+spring:
+  profiles: dev
+test:
+  config: 456
